@@ -6,7 +6,7 @@ Clone the repo and verify the import path for `rootcmd.go` properly. alternative
 
 run the main go file along with a sample file to test the code.
 ```
-go run main.go sample.txt
+go run main.go analyze sample.txt
 ```
 
 building an executable using `go build` and placing this executable inside `/usr/bin` will run `analyze` as a `shell` command.

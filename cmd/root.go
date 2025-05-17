@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -14,16 +13,23 @@ func check(err error) {
 	}
 }
 
+func handler(data []string) {
+	operation := data[0]
+	switch operation {
+	case "analyze":
+		display(data[1])
+	case "rename":
+		renameFile(data[1], data[2])
+	}
+}
+
 var rootCmd = &cobra.Command{
 	Use:   "analyze",
 	Short: "Analyze is used for analyzing a text file",
 	Long:  "A nice little text analyzer for friendly text analysis that you could simply achieve using bash commands such as wc",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		data, err := os.ReadFile(args[0])
-		check(err)
-		content := http.DetectContentType(data)
-		fmt.Println("The file content type is: " + content)
+		handler(args)
 	},
 }
 

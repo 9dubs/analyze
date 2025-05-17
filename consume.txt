@@ -1,1 +1,4 @@
 hello this will be consumed.
+this has been consumed
+will this be consumed?
+this will also be consumed
